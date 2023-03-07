@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="todosApp">
+  <head>
+    <script src="./js/angular.min.js"></script>
+    <script src="./js/todos.js"></script>
+  </head>
+  <body>
+    <style>
+      .true {
+        text-decoration: line-through;
+      }
+
+      .todosContainer ul {
+        list-style-type: none;
+      }
+    </style>
+    <div class="todosContainer" ng-controller="TodosAppController as todos">
+      <form ng-submit="todos.addTask(todos.textField)">
+        <input type="text" ng-model="todos.textField" />
+      </form>
+      <ul>
+        <li ng-repeat="todo in todos.list" class="{{todo.isDone}}">
+          <input
+            ng-click="todos.taskDone(todo.id, todo.isDone)"
+            type="checkbox"
+            ng-model="todo.isDone"
+          />
+          {{todo.task}}
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
